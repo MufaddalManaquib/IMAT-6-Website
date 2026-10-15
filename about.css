@@ -129,3 +129,9 @@
 .ab-portrait{aspect-ratio:2316/3088;background:#2c4038;box-shadow:0 0 0 1px rgba(170,215,190,.16),0 50px 120px -40px rgba(10,25,18,.7)}
 .ab-portrait img{object-position:50% 50%}
 .ab-portrait::after{display:none}
+/* v4: room between the heading and the wall, and between notes */
+.nwall{margin-top:clamp(72px,9vw,120px);gap:clamp(24px,3.4vw,48px)}
+.nw-col{gap:clamp(32px,4vw,56px)}
+.nw-col:nth-child(1){margin-top:0}.nw-col:nth-child(2){margin-top:clamp(40px,6vw,90px)}.nw-col:nth-child(3){margin-top:clamp(16px,2.5vw,36px)}
+.nt figcaption{margin-top:14px}
+@media (max-width:700px){.nwall{gap:18px}.nw-col:nth-child(n){margin-top:0}}

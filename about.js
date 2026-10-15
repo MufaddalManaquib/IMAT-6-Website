@@ -31,7 +31,7 @@
   var wall = $("#nwall");
   if (wall) {
     var cols = $$(".nw-col", wall);
-    function drift() { if (reduce || innerWidth <= 700) return; var r = wall.getBoundingClientRect(), c = (r.top + r.height / 2 - innerHeight / 2); cols.forEach(function (col) { col.style.transform = "translateY(" + (c * +col.dataset.speed * -2).toFixed(1) + "px)"; }); }
+    function drift() { if (reduce || innerWidth <= 700) return; var r = wall.getBoundingClientRect(), p = Math.max(0, Math.min(1, (innerHeight - r.top) / (r.height + innerHeight))); cols.forEach(function (col) { col.style.transform = "translateY(" + (p * +col.dataset.speed * -900).toFixed(1) + "px)"; }); }
     addEventListener("scroll", function () { requestAnimationFrame(drift); }, { passive: true }); drift();
     var box = $("#nbox"), img = $("img", box), cap = $("figcaption", box), notes = $$(".nt", wall).sort(function (a, b) { return a.dataset.i - b.dataset.i; }), cur = 0, last = null;
     function show(i) {
