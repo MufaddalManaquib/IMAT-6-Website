@@ -323,6 +323,82 @@
     render(); fit();
   })();
 
+
+  /* ================= HOME (landscape), after HomeScreen: sky by the hour, folder stack on the right ================= */
+  (function () {
+    var root = $("#app-home"); if (!root) return;
+    var hr = new Date().getHours();
+    var SK = hr < 5 || hr >= 22 ? ["#0b1030", "#1d2350", "#3a3570", "Studying late,", 1] : hr < 8 ? ["#3a4a8c", "#c8a2c8", "#f6c9a8", "Good morning,", .5] : hr < 12 ? ["#5d9be0", "#9cc4ef", "#e2eefa", "Good morning,", 0] : hr < 17 ? ["#3f86d8", "#7fb2ea", "#d5e7f8", "Good afternoon,", 0] : ["#252a5a", "#7b5b9b", "#f1b38f", "Good evening,", .7];
+    var SUB = [
+      { n: "Biology", m: "7 units · 728 questions", s: "0%", a: "#ecaa94", b: "#c98679", ink: "#3a1a14", ok: 1 },
+      { n: "Chemistry", m: "6 units · lessons ready", s: "0%", a: "#df95a7", b: "#b9718a", ink: "#3d1220", ok: 1 },
+      { n: "Physics", m: "Coming soon", s: "Soon", a: "#bf8dbd", b: "#8f6595", ink: "#2c1430" },
+      { n: "Maths & Logic", m: "Coming soon", s: "Soon", a: "#9a83c4", b: "#6f5a9b", ink: "#fff" },
+      { n: "Reading & Comprehension", m: "Coming soon", s: "Soon", a: "#706bb0", b: "#4c4787", ink: "#fff" }];
+    var BW = 75, X0 = W - BW * 5;
+    root.innerHTML = '<div class="hm-sky" style="background:linear-gradient(180deg,' + SK[0] + ' 0%,' + SK[1] + ' 55%,' + SK[2] + ' 100%)"></div><canvas class="hm-stars"></canvas>' +
+      '<div class="hm-cloud c1"></div><div class="hm-cloud c2"></div><div class="hm-cloud c3"></div>' +
+      '<h1 class="hm-title">Your IMAT<br>Syllabus</h1><div class="hm-btns"><button aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg></button><button aria-label="More"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="18" cy="12" r="1.3" fill="currentColor"/></svg></button></div>' +
+      '<div class="hm-greet"><span>' + SK[3] + '</span><b>Guest</b><em>Set your exam date</em></div>' +
+      '<div class="hm-next"><div><b>Up next</b><span>0% of the syllabus</span></div><p>Nothing planned and nothing left part-way. Open a subject to start.</p></div>' +
+      '<div class="dock" style="left:' + (X0 / 2 / W * 100) + '%">' + dock("home") + '</div>' +
+      '<div class="hm-open" aria-hidden="true"><canvas class="hm-helix"></canvas><span class="hm-idx">01</span><button class="hm-x" aria-label="Close">×</button><h2></h2><p></p><div class="hm-acts"><span class="hm-pp">Pebble path</span><span class="hm-go">→</span></div></div>' +
+      '<div class="hm-stack">' + SUB.map(function (s, i) {
+        return '<button class="hm-bar" data-i="' + i + '" style="left:' + (X0 + i * BW) + 'px;background:linear-gradient(180deg,' + s.a + ',' + s.b + ')"><span class="hm-tab" style="top:' + (22 + i * 132) + 'px;background:' + s.a + '"><i>0' + (i + 1) + '&nbsp;&nbsp;' + s.n + '</i></span><em>' + s.s + '</em></button>';
+      }).join("") + '</div>';
+    /* stars */
+    var cv = $(".hm-stars", root), cx = cv.getContext("2d"); cv.width = W; cv.height = H;
+    var st = []; for (var i = 0; i < 90; i++) st.push([Math.random() * X0, Math.random() * H * .6, Math.random() * 1.3 + .3, Math.random() * 6]);
+    var t0 = performance.now(), vis = true;
+    function stars() {
+      cx.clearRect(0, 0, W, H); var t = (performance.now() - t0) / 1000;
+      if (SK[4]) st.forEach(function (p) { cx.globalAlpha = SK[4] * (.35 + .65 * Math.abs(Math.sin(t * .6 + p[3]))) * (1 - p[1] / (H * .6)); cx.fillStyle = "#fff"; cx.beginPath(); cx.arc(p[0], p[1], p[2], 0, 7); cx.fill(); });
+      if (vis && !reduce && SK[4]) requestAnimationFrame(stars);
+    }
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { var was = vis; vis = e[0].isIntersecting; if (vis && !was) requestAnimationFrame(stars); }).observe(root);
+    stars();
+    /* opening a folder: it slides in from the right, over the sky */
+    var open = $(".hm-open", root), hcv = $(".hm-helix", open), hx = hcv.getContext("2d"), cur = -1, spin = 0;
+    function helix() {
+      var w = hcv.width = open.clientWidth, h = hcv.height = H; hx.clearRect(0, 0, w, h);
+      var ph = (performance.now() - t0) / 1000 * .5, amp = 110, cxh = w * .58;
+      for (var k = 0; k < 2; k++) for (var y = -40; y < h + 40; y += 6) {
+        var a = y / 52 + ph + k * Math.PI, z = Math.cos(a); hx.fillStyle = "rgba(255,255,255," + (.1 + .22 * (z + 1) / 2) + ")";
+        hx.beginPath(); hx.arc(cxh + amp * Math.sin(a) + (y - h / 2) * .25, y, 2 + 1.4 * (z + 1), 0, 7); hx.fill();
+        if (k === 0 && y % 24 === 0) { hx.strokeStyle = "rgba(255,255,255,.13)"; hx.lineWidth = 2; hx.beginPath(); hx.moveTo(cxh + amp * Math.sin(a) + (y - h / 2) * .25, y); hx.lineTo(cxh + amp * Math.sin(a + Math.PI) + (y - h / 2) * .25, y); hx.stroke(); }
+      }
+      if (cur === 0 && !reduce) spin = requestAnimationFrame(helix);
+    }
+    function show(i) {
+      if (i === cur || i < 0) { close(); return; }
+      var s = SUB[i]; cur = i; cancelAnimationFrame(spin);
+      open.style.background = "linear-gradient(170deg," + s.a + "," + s.b + ")"; open.style.color = s.ink;
+      $(".hm-idx", open).textContent = "0" + (i + 1); $("h2", open).textContent = s.n; $("h2", open).style.fontSize = s.n.length > 12 ? "64px" : "";
+      $("p", open).textContent = s.m + (s.ok ? " · 0% practised" : "");
+      $(".hm-acts", open).style.visibility = s.ok ? "" : "hidden";
+      open.style.right = (W - X0 - i * BW) + "px";
+      open.classList.remove("in"); void open.offsetWidth; open.classList.add("in"); open.setAttribute("aria-hidden", "false");
+      $$(".hm-bar", root).forEach(function (b, j) { b.classList.toggle("on", j === i); });
+      hcv.style.display = i === 0 ? "" : "none"; if (i === 0) helix();
+    }
+    function close() { cur = -1; open.classList.remove("in"); open.setAttribute("aria-hidden", "true"); $$(".hm-bar", root).forEach(function (b) { b.classList.remove("on"); }); }
+    $$(".hm-bar", root).forEach(function (b) { b.addEventListener("click", function () { if (root._sw) return; show(+b.dataset.i); }); });
+    $(".hm-x", open).addEventListener("click", close);
+    $(".hm-btns button", root).addEventListener("click", function () { toast(root, "Search every topic, A to Z"); });
+    $$(".hm-btns button", root)[1].addEventListener("click", function () { toast(root, "Settings, notes and your exam date"); });
+    $(".hm-next", root).addEventListener("click", function () { show(0); });
+    $(".hm-pp", open).addEventListener("click", function () { var p = document.getElementById("path"); if (p) p.scrollIntoView({ behavior: "smooth" }); });
+    /* swipe right to left on the stack opens the next folder; left to right closes */
+    var sx = null;
+    root.addEventListener("pointerdown", function (e) { sx = e.clientX; root._sw = false; });
+    root.addEventListener("pointerup", function (e) {
+      if (sx === null) return; var dx = (e.clientX - sx) / (+root.dataset.scale || 1); sx = null;
+      if (Math.abs(dx) < 40) return; root._sw = true; setTimeout(function () { root._sw = false; }, 60);
+      if (dx < 0) show(Math.min(4, cur + 1)); else if (cur > 0) show(cur - 1); else close();
+    });
+    fit();
+  })();
+
   /* ---------- the lesson page, live ---------- */
   fit();
 })();

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(){try{var v=sessionStorage.getItem("imat6-vt");if(!v)return;var d=document.documentElement,p=v.split(",");d.style.setProperty("--vx",p[0]);d.style.setProperty("--vy",p[1]);if(!("PageRevealEvent" in window))d.classList.add("vt-in");}catch(e){}})();</script>
 <title>IMAT6 · IMAT Preparation App with Question Bank and Mock Tests</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Prepare for the IMAT with 728 Biology questions, 714 IMAT trap questions, timed mock tests and real +1.5 / −0.4 marking. For iPad, iPhone and Mac.">
@@ -59,11 +60,10 @@
         <a class="pill lg store" href="https://play.google.com/store/apps" aria-label="Get IMAT6 on Google Play"><svg width="20" height="22" viewBox="0 0 24 26" aria-hidden="true"><path fill="#34A853" d="M1.2.6 13.6 13 1.2 25.4C.8 25.1.6 24.6.6 24V2c0-.6.2-1.1.6-1.4z"/><path fill="#FBBC04" d="m17.8 17.2-4.2-4.2 4.2-4.2 4.8 2.7c1.4.8 1.4 2.2 0 3z"/><path fill="#EA4335" d="M17.8 17.2 13.6 13 1.2 25.4c.5.4 1.2.5 2 .1z"/><path fill="#4285F4" d="M17.8 8.8 3.2.5C2.4.1 1.7.2 1.2.6L13.6 13z"/></svg><span><small>Get it on</small>Google Play</span></a>
       </div>
     </div>
-    <a class="logic-cta glass-pill mag" href="how-it-works.html"><span class="lc-k">How it thinks</span><span class="lc-t">See the logic behind every question</span><span class="lc-a" aria-hidden="true">→</span></a>
     <p class="hero-more"><a class="more" href="#path">Try the path</a></p>
   </div>
   <div class="wrap-wide hero-device">
-    <div class="tilt-stage"><div class="ipad live" id="hero-ipad"><div class="screen"><div class="app-vp"><div class="app-canvas ex" id="app-exam" role="application" aria-label="The IMAT6 exam screen. Tap the countdown, the sections, the reviews or the Biology mock."></div></div><span class="live-hint">Live · tap anything</span></div></div></div>
+    <div class="tilt-stage"><div class="ipad live" id="hero-ipad"><div class="screen"><div class="app-vp"><div class="app-canvas hm" id="app-home" role="application" aria-label="The IMAT6 home screen. Tap a subject folder, or swipe the stack from right to left."></div></div><span class="live-hint">Live · tap a folder, or swipe the stack</span></div></div></div>
   </div>
 </section>
 
@@ -94,6 +94,19 @@
   </div>
 </section>
 
+<!-- EXAM · blush -->
+<section class="band section" id="exam" data-sky="blush">
+  <div class="wrap-wide">
+    <div class="wrap head rv">
+      <p class="eyebrow">Your exam</p>
+      <h2>The exam, counted down.</h2>
+      <p class="lede">Set your date and IMAT6 counts the weeks and study hours left. The paper is laid out section by section, and every subject ends in a mock timed like the real thing.</p>
+    </div>
+    <p class="try wrap" style="display:flex">Try it</p>
+    <div class="ipad live rv"><div class="screen"><div class="app-vp"><div class="app-canvas ex" id="app-exam" role="application" aria-label="The IMAT6 exam screen. Tap the countdown, the sections, the reviews or the Biology mock."></div></div><span class="live-hint">Live · tap anything</span></div></div>
+  </div>
+</section>
+
 <!-- PEBBLE PATH · blush -->
 <section class="band section" id="path" data-sky="blush">
   <div class="wrap-wide">
@@ -107,7 +120,7 @@
       <div class="ipad"><div class="screen"><div class="pp-screen">
         <div class="pp-scroll"><canvas aria-label="The Biology learning path. Scroll inside the screen; tap a coin to open it."></canvas><div class="pp-spacer"></div></div>
         <div class="pp-pop" hidden></div>
-        <span class="pp-hint">Scroll inside · tap a coin</span>
+        <div class="pp-hint" role="status"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M8 11l4 4 4-4"/><circle cx="12" cy="20" r="1.2" fill="currentColor"/></svg><span><b>Scroll down the path</b>Tap a coin to open its level</span></div>
       </div></div></div>
       <div class="path-ctl">
         <button class="pill lg" id="pp-next">Pass the next level</button>
@@ -310,14 +323,15 @@
       <h2>Turn it upright.</h2>
       <p class="lede">Hold iPad in portrait and the folders stack from the bottom, the lesson fills the height, and questions come one card at a time.</p>
     </div>
-      <div class="strip pstrip rv" id="portrait-strip">
-        <figure><div class="ipad-p"><div class="screen"><img src="img/p-home-s.webp" srcset="img/p-home-s.webp 560w, img/p-home.webp 1100w" sizes="(max-width:640px) 70vw, 340px" alt="IMAT6 home screen in portrait, subject folders stacked at the bottom" loading="lazy" draggable="false"></div></div><figcaption>Home</figcaption></figure>
-        <figure><div class="ipad-p"><div class="screen"><img src="img/p-cover-s.webp" srcset="img/p-cover-s.webp 560w, img/p-cover.webp 1100w" sizes="(max-width:640px) 70vw, 340px" alt="Biology subject cover in portrait with a DNA helix" loading="lazy" draggable="false"></div></div><figcaption>Biology, 7 units and 728 questions</figcaption></figure>
-        <figure><div class="ipad-p"><div class="screen"><img src="img/p-biology-units-s.webp" srcset="img/p-biology-units-s.webp 560w, img/p-biology-units.webp 1100w" sizes="(max-width:640px) 70vw, 340px" alt="IMAT Biology question bank units as folder tabs in portrait" loading="lazy" draggable="false"></div></div><figcaption>Seven units, stacked</figcaption></figure>
-        <figure><div class="ipad-p"><div class="screen"><img src="img/p-question-s.webp" srcset="img/p-question-s.webp 560w, img/p-question.webp 1100w" sizes="(max-width:640px) 70vw, 340px" alt="A single IMAT practice question card in portrait" loading="lazy" draggable="false"></div></div><figcaption>One question at a time</figcaption></figure>
+      <div class="rot rv" data-start="land" data-to="Turn it upright" data-back="Back to landscape">
+        <div class="rot-stage"><div class="rot-dev"><div class="rot-screen">
+          <div class="rot-face land"><img src="img/home.webp" srcset="img/home-s.webp 800w, img/home.webp 1600w" sizes="(max-width:900px) 100vw, 1180px" alt="IMAT6 home screen in landscape" width="2388" height="1604" loading="lazy" decoding="async"></div>
+          <div class="rot-face port"><div class="rot-track"><img src="img/p-home-s.webp" srcset="img/p-home-s.webp 560w, img/p-home.webp 1100w" sizes="(max-width:640px) 70vw, 420px" alt="IMAT6 home screen in portrait, subject folders stacked at the bottom" loading="lazy" draggable="false"><img src="img/p-cover-s.webp" srcset="img/p-cover-s.webp 560w, img/p-cover.webp 1100w" sizes="(max-width:640px) 70vw, 420px" alt="Biology subject cover in portrait with a DNA helix" loading="lazy" draggable="false"><img src="img/p-biology-units-s.webp" srcset="img/p-biology-units-s.webp 560w, img/p-biology-units.webp 1100w" sizes="(max-width:640px) 70vw, 420px" alt="IMAT Biology units as folder tabs in portrait" loading="lazy" draggable="false"><img src="img/p-question-s.webp" srcset="img/p-question-s.webp 560w, img/p-question.webp 1100w" sizes="(max-width:640px) 70vw, 420px" alt="A single IMAT practice question card in portrait" loading="lazy" draggable="false"></div></div>
+        </div></div></div>
+        <div class="rot-ctl"><button class="pill lg rot-go" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg><span>Turn it upright</span></button><div class="rot-nav"><button class="circle-btn rot-prev" aria-label="Previous screen">‹</button><span class="rot-dots"></span><button class="circle-btn rot-next" aria-label="Next screen">›</button></div></div>
+        <p class="rot-cap" data-land="Landscape: your subjects as folders down the right edge. Turn it upright to see portrait.">Home, the Biology cover, seven units and a single question. Swipe the screen.</p>
       </div>
-      <div class="strip-ctl"><button class="circle-btn" data-strip="portrait-strip" data-dir="-1" aria-label="Previous"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2 2 8l6 6"/></svg></button><button class="circle-btn" data-strip="portrait-strip" data-dir="1" aria-label="Next"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 2 6 6-6 6"/></svg></button></div>
-    </div>
+        </div>
   </div>
 </section>
 
@@ -371,6 +385,20 @@
       <div class="tile"><span class="ic"><svg><use href="#i-split"/></svg></span><h3>Split view</h3><p>Lesson and question together.</p></div>
       <div class="tile"><span class="ic"><svg><use href="#i-search"/></svg></span><h3>Search lens</h3><p>Every topic, A to Z, in one sweep.</p></div>
       <div class="tile"><span class="ic"><svg><use href="#i-crown"/></svg></span><h3>The Crown</h3><p>One dial to go anywhere.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT THINKS · night -->
+<section class="band section ink-light" id="logic" data-sky="night">
+  <div class="wrap-wide logic">
+    <div class="logic-shot rv" data-par><div class="ipad-p"><div class="screen"><img src="img/p-notsure-s.webp" srcset="img/p-notsure-s.webp 450w, img/p-notsure.webp 900w" sizes="(max-width:800px) 70vw, 380px" alt="An IMAT6 question with option C held and marked not sure" loading="lazy"></div></div><span class="logic-tag"><b>!</b> Held: not sure</span></div>
+    <div class="rv">
+      <p class="eyebrow">How it thinks</p>
+      <h2>Every tap is data.</h2>
+      <p class="lede">IMAT6 scores you with the exam's own marks, reshuffles questions and options so you can't learn the letters, times every answer, remembers when you weren't sure, and makes the next mock harder when you answer right in under two seconds.</p>
+      <ul class="logic-list"><li><b>+1.5 / −0.4 / 0</b> on every checked answer</li><li><b>Shuffled</b> questions and options, every attempt</li><li><b>Timed</b>, so slow answers return in mocks</li><li><b>Hold for !</b> to mark a guess</li></ul>
+      <a class="logic-cta mag" href="how-it-works.html"><span class="lc-k">How it thinks</span><span class="lc-t">See the logic behind every question</span><span class="lc-a" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>

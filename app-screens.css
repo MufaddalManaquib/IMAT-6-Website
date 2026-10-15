@@ -179,3 +179,41 @@
 @media (prefers-reduced-motion:reduce){.bub-i::after,.bub-i::before{animation:none}.bub-i::before{display:none}}
 
 .app-canvas .scroll{padding-bottom:150px}
+
+/* ================= HOME ================= */
+.hm{background:#252a5a;touch-action:pan-y}
+.hm-sky,.hm-stars{position:absolute;inset:0;width:1194px;height:834px}
+.hm-cloud{position:absolute;border-radius:50%;filter:blur(2px);background:radial-gradient(circle at 40% 35%,rgba(255,244,236,.95),rgba(246,222,214,.7) 45%,rgba(240,210,210,0) 70%);animation:hmdrift 60s linear infinite}
+.hm-cloud.c1{left:380px;top:70px;width:260px;height:170px}
+.hm-cloud.c2{left:470px;top:90px;width:200px;height:150px;animation-duration:75s;opacity:.85}
+.hm-cloud.c3{left:640px;top:120px;width:150px;height:110px;animation-duration:90s;opacity:.7}
+@keyframes hmdrift{50%{transform:translateX(-60px)}}
+.hm-title{position:absolute;left:24px;top:8px;margin:0;font-size:62px;line-height:1.08;font-weight:800;letter-spacing:-2.6px;color:#e4e1fb;text-shadow:0 2px 0 rgba(0,0,0,.18)}
+.hm-btns{position:absolute;left:592px;top:6px;display:flex;gap:12px}
+.hm-btns button{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.18)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);display:grid;place-items:center;color:#fff}
+.hm-btns svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+.hm-greet{position:absolute;left:24px;top:286px;display:grid;color:#e9e6fb}
+.hm-greet span{font-size:24px;font-weight:300;opacity:.9}
+.hm-greet b{font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1.15}
+.hm-greet em{font-style:normal;font-size:15px;font-weight:600;opacity:.85;margin-top:6px}
+.hm-next{position:absolute;left:22px;top:436px;width:400px;padding:16px 18px;border-radius:24px;background:rgba(60,30,40,.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);cursor:pointer}
+.hm-next div{display:flex;justify-content:space-between;align-items:baseline}
+.hm-next b{font-size:22px;font-weight:700}
+.hm-next span{font-size:13px;font-weight:600;color:#e7f25a}
+.hm-next p{margin:8px 0 0;font-size:15px;line-height:1.45;opacity:.75}
+.hm-stack{position:absolute;inset:0;pointer-events:none}
+.hm-bar{position:absolute!important;top:0;width:75px;height:834px;pointer-events:auto;box-shadow:-8px 0 22px -10px rgba(0,0,0,.4),inset 1px 0 0 rgba(255,255,255,.18);border-radius:22px 0 0 22px!important;transition:filter .2s}
+.hm-bar:hover,.hm-bar.on{filter:brightness(1.08)}
+.hm-bar em{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-style:normal;font-size:12px;font-weight:600;color:rgba(255,255,255,.92)}
+.hm-tab{position:absolute;left:-30px;width:30px;height:250px;clip-path:polygon(0 9%,100% 0,100% 100%,0 91%);display:grid;place-items:center;filter:brightness(.97)}
+.hm-tab i{font-style:normal;writing-mode:vertical-rl;transform:rotate(180deg);font-size:13px;font-weight:600;color:#fff;white-space:nowrap;letter-spacing:.02em}
+.hm-open{position:absolute;left:0;top:0;bottom:0;padding:36px 40px 140px;display:flex;flex-direction:column;justify-content:flex-end;transform:translateX(100%);opacity:0;pointer-events:none;transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .3s;box-shadow:12px 0 40px -10px rgba(0,0,0,.35);z-index:15;overflow:hidden}
+.hm-open.in{transform:none;opacity:1;pointer-events:auto}
+.hm-open canvas{position:absolute;inset:0;pointer-events:none}
+.hm-idx{position:absolute;top:30px;left:40px;font-size:14px;font-weight:700;letter-spacing:.2em;opacity:.85}
+.hm-x{position:absolute!important;top:22px;right:24px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.3)!important;font-size:24px!important;line-height:1}
+.hm-open h2{position:relative;margin:0;font-size:108px;font-weight:800;letter-spacing:-4.5px;line-height:.95}
+.hm-open p{position:relative;margin:14px 0 0;font-size:18px;font-weight:600;opacity:.85}
+.hm-acts{position:relative;display:flex;gap:12px;margin-top:22px}
+.hm-pp,.hm-go{background:rgba(40,16,12,.55);color:#fff;border-radius:999px;padding:12px 22px;font-size:17px;font-weight:600;cursor:pointer}
+.hm-go{width:48px;padding:12px 0;text-align:center}

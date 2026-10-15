@@ -657,3 +657,133 @@ body.skypage .footer{border:0;margin-top:-1px}
 .dl-card .stores{justify-content:flex-start}
 .dl-card .store{opacity:.55}.dl-card .store.lit{opacity:1;box-shadow:0 0 0 2px #1d1d1f,0 14px 30px -14px rgba(0,0,0,.4)}
 @media (max-width:820px){.dl-stage{grid-template-columns:1fr;justify-items:center;text-align:center}.dl-card .stores{justify-content:center}}
+
+/* ===== v5 ===== */
+/* page transitions: native circle reveal, veil fallback without a flash */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:none}
+::view-transition-new(root){animation:vtReveal .75s cubic-bezier(.65,0,.2,1) both}
+@keyframes vtReveal{from{clip-path:circle(0% at var(--vx,50%) var(--vy,50%))}to{clip-path:circle(150% at var(--vx,50%) var(--vy,50%))}}
+@media (prefers-reduced-motion:reduce){::view-transition-new(root){animation:none}}
+html.vt-in body::after{content:"";position:fixed;inset:0;z-index:9998;background:radial-gradient(120% 90% at 50% 0%,#fdf5f2,#e1ecf9 55%,#0f1230)}
+#veil{will-change:clip-path}
+/* glass tilt: no preserve-3d, so rounded screens keep their corners */
+.spec-host{transform-style:flat}
+.ipad .screen,.ipad-p .screen{isolation:isolate}
+
+/* iPhone 18 */
+.iphone{position:relative;aspect-ratio:100/209.5;padding:3.1%;border-radius:15.5%/7.4%;background:#060607;box-shadow:inset 0 0 0 1px #2a2a2d,0 0 0 1.6px #9b9ba1,0 0 0 3px #4b4b50,0 40px 70px -32px rgba(0,0,0,.5)}
+.iphone::before{content:"";position:absolute;right:-4.6px;top:25%;width:2.6px;height:11%;border-radius:0 2px 2px 0;background:linear-gradient(90deg,#6d6d72,#a6a6ac)}
+.iphone::after{content:"";position:absolute;left:-4.6px;top:18%;width:2.6px;height:16%;border-radius:2px 0 0 2px;background:linear-gradient(#a6a6ac 0 38%,transparent 38% 56%,#a6a6ac 56%)}
+.iphone .screen{position:relative;width:100%;height:100%;border-radius:12.4%/5.85%;overflow:hidden;background:#000;isolation:isolate}
+.iphone .screen img{display:block;width:100%;height:100%;object-fit:cover}
+.iphone .screen::after{content:"";position:absolute;top:1.35%;left:50%;width:29%;height:3.2%;transform:translateX(-50%);background:#000;border-radius:999px;z-index:3;box-shadow:inset 6px 0 6px -4px rgba(40,40,60,.6)}
+.feat-duo .iphone,.duo .iphone{box-shadow:inset 0 0 0 1px #2a2a2d,0 0 0 1.6px #9b9ba1,0 0 0 3px #4b4b50,0 40px 70px -26px rgba(0,0,0,.55)}
+/* Samsung Galaxy S25 Ultra */
+.galaxy{position:relative;aspect-ratio:100/211;padding:2.4%;border-radius:6.5%/3.1%;background:#070708;box-shadow:inset 0 0 0 1px #2a2a2d,0 0 0 2px #a3a3a8,0 0 0 3.5px #55555a,0 40px 70px -30px rgba(0,0,0,.5)}
+.galaxy::before{content:"";position:absolute;right:-5px;top:20%;width:3px;height:20%;border-radius:0 2px 2px 0;background:linear-gradient(#a3a3a8 0 55%,transparent 55% 65%,#a3a3a8 65%)}
+.galaxy .screen{position:relative;width:100%;height:100%;border-radius:4.6%/2.2%;overflow:hidden;background:#000}
+.galaxy .screen img{display:block;width:100%;height:100%;object-fit:cover}
+.galaxy .screen::after{content:"";position:absolute;top:1.25%;left:50%;width:3.8%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:#030303;box-shadow:0 0 0 1.5px #1c1c1f}
+.dl-dev.galaxy{max-width:250px;margin-inline:auto}
+
+/* home: folder stack with trapezium tabs on the left edge of each bar */
+.folders{touch-action:pan-y}
+.tabs{position:relative;z-index:2}
+.tab{justify-content:flex-end!important;overflow:visible;padding-bottom:24px!important}
+.tab .tz{position:absolute;left:-24px;width:24px;padding:22px 0;clip-path:polygon(0 7%,100% 0,100% 100%,0 93%);display:grid;place-items:center;filter:brightness(.98)}
+.tab .tz b{writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;font-weight:600;letter-spacing:.02em;white-space:nowrap;color:#fff}
+.tab[aria-selected="true"] .tz{filter:brightness(1.12)}
+.tab em{font-weight:600}
+.cover.swipe-in{animation:coverIn .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes coverIn{from{transform:translateX(60%);opacity:.3}}
+@media (max-width:640px){.tab .tz{left:-20px;width:20px;padding:14px 0}.tab .tz b{font-size:10.5px}}
+
+/* path: hint as a pop-up that leaves on the first scroll */
+.pp-hint{position:absolute;left:50%;top:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);display:flex;align-items:center;gap:12px;padding:14px 20px;border-radius:22px;background:rgba(24,18,28,.62);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 20px 40px -18px rgba(0,0,0,.5);color:#fff;font-size:13px;line-height:1.35;white-space:nowrap;transition:opacity .45s,transform .45s cubic-bezier(.2,.8,.2,1);z-index:6;pointer-events:none}
+.pp-hint b{display:block;font-size:15px;font-weight:600}
+.pp-hint svg{flex:none;animation:hintBob 1.6s ease-in-out infinite}
+@keyframes hintBob{50%{transform:translateY(5px)}}
+.pp-hint.gone{opacity:0;transform:translate(-50%,-30%) scale(.94)}
+
+/* rotate an iPad between landscape and portrait */
+.rot{margin-top:clamp(36px,5vw,60px)}
+.rot-stage{width:min(640px,100%);aspect-ratio:1;margin:0 auto;display:grid;place-items:center}
+.rot-dev{position:relative;padding:clamp(9px,1.6vw,14px);border-radius:clamp(20px,3.6vw,34px);background:#0b0b0c;box-shadow:0 0 0 1.5px #c9c9ce,0 0 0 3px #e8e8ed,0 50px 90px -40px rgba(0,0,0,.5);transition:transform .95s cubic-bezier(.65,0,.25,1)}
+.ink-light .rot-dev{box-shadow:0 0 0 1.5px #3a3a3c,0 0 0 3px #222,0 50px 90px -40px rgba(0,0,0,.8)}
+.rot.is-land .rot-dev{width:100%;aspect-ratio:10/7}
+.rot.is-port .rot-dev{width:70%;aspect-ratio:7/10}
+.rot.turning-port .rot-dev{transform:rotate(-90deg)}
+.rot.turning-land .rot-dev{transform:rotate(90deg)}
+.rot-screen{position:relative;width:100%;height:100%;border-radius:clamp(11px,2vw,20px);overflow:hidden;background:#000;container-type:size;isolation:isolate}
+.rot-face{position:absolute;inset:0;transition:opacity .4s .25s}
+.rot-face img{display:block;width:100%;height:100%;object-fit:cover}
+.rot.is-land .rot-face.port,.rot.is-port .rot-face.land{inset:auto;left:50%;top:50%;width:100cqh;height:100cqw;opacity:0}
+.rot.is-land .rot-face.port{transform:translate(-50%,-50%) rotate(90deg)}
+.rot.is-port .rot-face.land{transform:translate(-50%,-50%) rotate(-90deg)}
+.rot.turning-port .rot-face.port,.rot.turning-land .rot-face.land{opacity:1}
+.rot.turning-port .rot-face.land,.rot.turning-land .rot-face.port{opacity:0}
+.rot.snap .rot-dev,.rot.snap .rot-face{transition:none!important}
+.rot-track{position:relative;display:flex;width:100%;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;cursor:grab}
+.rot-track::-webkit-scrollbar{display:none}
+.rot-track.dragging{cursor:grabbing}
+.rot-track img{flex:0 0 100%;scroll-snap-align:start;user-select:none;-webkit-user-drag:none}
+.rot-ctl{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:clamp(18px,3vw,30px)}
+.rot-go{gap:10px}
+.rot-go svg{transition:transform .6s}
+.rot-go:hover svg{transform:rotate(-90deg)}
+.rot-nav{display:flex;align-items:center;gap:14px}
+.rot-dots{display:flex;gap:8px}
+.rot-dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:currentColor;opacity:.25;cursor:pointer;transition:opacity .3s,width .3s}
+.rot-dots button.on{opacity:.9;width:22px;border-radius:4px}
+.rot-cap{text-align:center;font-size:14px;color:var(--ink-2);margin:14px auto 0;max-width:460px}
+
+/* home: how it thinks, before contact */
+.logic{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(36px,6vw,96px);align-items:center}
+.logic-shot{position:relative;width:min(380px,80%);margin-inline:auto}
+.logic-tag{position:absolute;right:-14%;top:47%;display:flex;align-items:center;gap:8px;padding:8px 14px 8px 8px;border-radius:999px;font-size:13px;color:#fff;background:rgba(255,255,255,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);white-space:nowrap}
+.logic-tag b{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#e2b84a;color:#2a1d00;font-weight:800}
+.logic-list{list-style:none;padding:0;margin:24px 0 8px;display:grid;gap:10px}
+.logic-list li{font-size:15px;color:var(--ink-2)}
+.logic-list b{color:var(--ink);font-weight:600}
+@media (max-width:820px){.logic{grid-template-columns:1fr}.logic-tag{right:-4%}}
+
+/* devices: landscape strip in iPad frames */
+.lstrip{grid-auto-columns:min(82%,640px);position:relative}
+.lstrip figure{scroll-snap-align:start}
+.strip .ipad img{border-radius:0;aspect-ratio:auto;height:100%;user-select:none;-webkit-user-drag:none}
+.lstrip.dragging,.phones.dragging{cursor:grabbing}
+.lstrip,.phones{cursor:grab}
+.strip,.phones{position:relative}
+.pstrip figure{scroll-snap-align:start}
+/* Mac: the app in a window on the desktop, crown in view */
+.mac .lid .screen.mac-desk{background:radial-gradient(120% 100% at 30% 0%,#a9cdf2,#5e88cb 50%,#2b3d78)}
+.mac-win{width:82%;border-radius:clamp(5px,1vw,10px);overflow:hidden;background:#000;box-shadow:0 24px 50px -16px rgba(0,0,0,.55),0 0 0 .5px rgba(0,0,0,.35)}
+.mac-bar{height:clamp(12px,2.2vw,22px);display:flex;align-items:center;gap:clamp(3px,.6vw,6px);padding:0 clamp(6px,1vw,10px);background:#ececef}
+.mac-bar i{width:clamp(5px,.9vw,9px);height:clamp(5px,.9vw,9px);border-radius:50%;background:#ff5f57}
+.mac-bar i:nth-child(2){background:#febc2e}.mac-bar i:nth-child(3){background:#28c840}
+.mac-bar span{flex:1;text-align:center;font-size:clamp(8px,1.1vw,11px);font-weight:600;color:#6b6b70;margin-right:clamp(20px,4vw,44px)}
+.mac .lid .mac-win img{width:100%;height:auto;aspect-ratio:2388/1604;object-fit:cover;display:block}
+/* download picker: mini devices */
+.dl-tabs button{display:inline-flex;flex-direction:column;align-items:center;gap:6px;padding:12px 18px 10px;border-radius:20px;min-width:88px}
+.dl-tabs button svg{height:28px;width:auto}
+.dl-tabs button span{font-size:13px}
+.dl-tabs button[aria-pressed="true"] svg rect[opacity]{opacity:.35}
+/* devices: everywhere, synced */
+.sync{padding-top:clamp(40px,6vw,80px)}
+.sync-devs{display:flex;justify-content:center;align-items:flex-end;gap:clamp(14px,2.6vw,26px);margin-bottom:30px;color:var(--ink-3)}
+.sd{display:block;border:2px solid currentColor;animation:syncPulse 3.2s ease-in-out infinite}
+.sd:nth-child(2){animation-delay:.4s}.sd:nth-child(3){animation-delay:.8s}.sd:nth-child(4){animation-delay:1.2s}
+.ipad-i{width:66px;height:48px;border-radius:8px}
+.phone-i{width:24px;height:48px;border-radius:7px}
+.mac-i{width:74px;height:46px;border-radius:5px 5px 2px 2px;box-shadow:0 6px 0 -3px currentColor}
+.droid-i{width:24px;height:50px;border-radius:4px}
+@keyframes syncPulse{0%,70%,100%{color:var(--ink-3);transform:none}20%{color:#3d6fd1;transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.sd{animation:none}}
+.hero-device .live-hint{right:auto;left:16px}
+.feat-row.rev{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr)}
+@media (max-width:860px){.feat-row.rev{grid-template-columns:1fr}}
+.ink-light .logic-cta{background:rgba(255,255,255,.92);color:#1d1d1f;border-color:#fff}
+.ink-light .logic-cta .lc-k{color:#6e6e73}
+.ink-light .logic-cta .lc-t{color:#1d1d1f}
+@media (max-width:520px){.dl-tabs{gap:6px;flex-wrap:nowrap}.dl-tabs button{min-width:0;flex:1;padding:10px 6px 8px}.dl-tabs button svg{height:22px}.dl-tabs button span{font-size:12px}}
