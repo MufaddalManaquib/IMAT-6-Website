@@ -125,3 +125,7 @@
 .ab-badge.b1{top:auto;bottom:24%;left:5%}.ab-badge.b2{top:auto;bottom:8%;right:5%}
 .nwall{height:auto;overflow:visible;-webkit-mask-image:none;mask-image:none}
 .nw-col:nth-child(2){margin-top:-6%}.nw-col:nth-child(3){margin-top:4%}
+/* v3: the photo exactly as taken, on a background matching the shirt */
+.ab-portrait{aspect-ratio:2316/3088;background:#2c4038;box-shadow:0 0 0 1px rgba(170,215,190,.16),0 50px 120px -40px rgba(10,25,18,.7)}
+.ab-portrait img{object-position:50% 50%}
+.ab-portrait::after{display:none}

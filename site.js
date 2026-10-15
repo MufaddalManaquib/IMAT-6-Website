@@ -388,7 +388,7 @@
   /* ================= SKY BACKGROUND (scroll-driven) ================= */
   (function () {
     var layer = $("#skybg"); if (!layer) return;
-    var SKY = { dawn: "#fdf5f2", blush: "#fbe9e5", morning: "#eaf3fc", day: "#e1ecf9", gold: "#f7ebd4", dusk: "#dcaaa3", ember: "#2a1815", night: "#0f1230", black: "#050507" };
+    var SKY = { dawn: "#fdf5f2", blush: "#fbe9e5", morning: "#eaf3fc", day: "#e1ecf9", gold: "#f7ebd4", dusk: "#dcaaa3", ember: "#2a1815", shirt: "#2c4038", night: "#0f1230", black: "#050507" };
     var secs = $$("[data-sky]");
     function update() {
       var mid = window.innerHeight / 2, band = window.innerHeight * 0.45, i = 0, n = secs.length;
